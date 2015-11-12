@@ -1,4 +1,5 @@
 <?php
+// Singleton Database class that wraps a PDO connection.
 
 class Database {
     const HOST = 'localhost';
@@ -7,16 +8,8 @@ class Database {
     const DBPASSWORD = 'gorgonzola7!';
 
     private $connection;
-
-    public static function get_instance() {
-        static $instance = null;
-
-        if (null === $instance) {
-            $instance = new static();
-        }
-        return $instance;
-    }
-
+    
+    // The constructor is private. 
     private function __construct() {
         try {
             $this->connection = new PDO("mysql:host=".self::HOST.";dbname=".self::DBNAME, self::DBUSER, self::DBPASSWORD);
@@ -25,10 +18,24 @@ class Database {
         }
     }
 
-    public static function prepare_and_execute($sql, $data) {
+    // Also private, the only way to interact with the singleton is the prepare_and_execute function.
+    private static function get_instance() {
+        static $instance = null; // Static, so only gets set to NULL the first time this method is run.
+
+        if (null === $instance) {
+            $instance = new static(); // Calls the private constructor.
+        }
+
+        return $instance;
+    }
+
+    // All database interaction happens using this static method.
+    public static function prepare_and_execute($sql, $data = []) {
         $connection = self::get_instance()->connection;
+
         $prepared = $connection->prepare($sql);
         $prepared->execute($data);
+
         return $prepared;
     }
 }
