@@ -14,7 +14,7 @@ class Database {
         try {
             $this->connection = new PDO("mysql:host=".self::HOST.";dbname=".self::DBNAME, self::DBUSER, self::DBPASSWORD);
         } catch(PDOException $e) {
-            die("DB: " . $e->getMessage());
+            die("DB Error: " . $e->getMessage()); // A nicer recovery would be good here. Even a redirect to an HTTP 500 error page would do.
         }
     }
 
