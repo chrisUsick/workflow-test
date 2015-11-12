@@ -1,18 +1,18 @@
 <?php
     require('includes\includes.php');
-    require('partials\header.php');
     
-    $sql   = "SELECT * from games";
-    $games = Database::prepare_and_execute($sql, []);
+    $sql        = "SELECT * FROM games";
+    $pdo_result = Database::prepare_and_execute($sql);
+    $games      = $pdo_result->fetchAll();
     
 ?>
+<?php require('partials\header.php'); ?>
 
-<h1>This is the Temp Index</h1>
-<ul>
-    <?php while ($row = $games->fetch()): ?>
-        <li><?= $row['name'] ?></li>
-    <?php endwhile ?>
-</ul>
-<?php
-    require('partials\footer.php');
-?>
+<h1>Bored Game Geek</h1>
+
+<?php foreach($games as $game): ?>
+    <h2><?= $game['name'] ?></h2>
+    <p><?= $game['description'] ?></p>
+<?php endforeach ?>
+
+<?php require('partials\footer.php'); ?>
