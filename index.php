@@ -1,12 +1,10 @@
 <?php
     require('includes\includes.php');
     
-    $sql        = "SELECT * FROM games";
-    $pdo_result = Database::prepare_and_execute($sql);
-    $games      = $pdo_result->fetchAll();
-    
+    $games = find_all_games();
+
+    require('partials\header.php');
 ?>
-<?php require('partials\header.php'); ?>
 
 <h1>Bored Game Geek</h1>
 

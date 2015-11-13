@@ -1,5 +1,18 @@
 <?php
-// Singleton Database class that wraps a PDO connection.
+/* Singleton Database class that wraps a PDO connection.
+
+   It can be used to select rows like this:
+
+   $sql        = "SELECT * FROM games";
+   $pdo_result = Database::prepare_and_execute($sql);
+   $games      = $pdo_result->fetchAll();
+
+   Or to insert rows like this:
+
+   $sql          = "INSERT INTO games (name, description) VALUES (:name, :description)";
+   $new_game_row = ['name' => 'Catan', 'description' => 'The Settlers of Catan is...'];
+   $pdo_result   = Database::prepare_and_execute($sql, $new_game_row);
+*/
 
 class Database {
     const HOST = 'localhost';
