@@ -15,8 +15,7 @@ function find_all_games() {
    SQL INSERT statement.
    Usage:
    $new_game = ['name'             => 'New Game',
-                'description'      => 'New Descriptoin',
-                'year_published'   => 2015,
+                'description'      => 'New Description',
                 'min_num_players'  => 2,
                 'max_num_players'  => 4,
                 'min_play_minutes' => 60,
@@ -26,8 +25,8 @@ function find_all_games() {
 */
 function create_game($game) {
     $sql  = "INSERT INTO games";
-    $sql .= "(name, description, year_published, min_num_players, max_num_players, min_play_minutes, max_play_minutes, official_url)";
-    $sql .= " VALUES (:name, :description, :year_published, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes, :official_url)";
+    $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes, official_url)";
+    $sql .= " VALUES (:name, :description, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes, :official_url)";
     
     return Database::prepare_and_execute($sql, $game);
 }
@@ -40,7 +39,6 @@ function sanitized_game($game) {
     $game = [
         'name'             => filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
         'description'      => filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-        'year_published'   => filter_input(INPUT_POST, 'year_published', FILTER_SANITIZE_NUMBER_INT),
         'min_num_players'  => filter_input(INPUT_POST, 'min_num_players', FILTER_SANITIZE_NUMBER_INT),
         'max_num_players'  => filter_input(INPUT_POST, 'max_num_players', FILTER_SANITIZE_NUMBER_INT),
         'min_play_minutes' => filter_input(INPUT_POST, 'min_play_minutes', FILTER_SANITIZE_NUMBER_INT),
