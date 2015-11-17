@@ -14,10 +14,13 @@
     }
 
     $is_new_game = !isset($game['id']);
+    $is_delete   = isset($_POST['delete']);
     
     if ($_POST && !$validation_error) {
         if ($is_new_game) {
             create_game($game);
+        } else if ($is_delete) {
+            delete_game_by_id($game['id']);
         } else {
             update_game($game);
         }
@@ -63,7 +66,7 @@
             <input type="submit" value="Create Game">
         <?php else: ?>
             <input type="submit" value="Update Game">
-            <input type="submit" name="delete" value="Delete Game">
+            <input type="submit" name="delete" value="Delete Game" onclick="return confirm('Are you sure you want to delete this game?')">
         <?php endif ?>
     </fieldset>
 </form>
