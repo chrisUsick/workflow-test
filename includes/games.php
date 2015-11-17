@@ -7,8 +7,21 @@ function find_all_games() {
     $sql        = "SELECT * FROM games";
     $pdo_result = Database::prepare_and_execute($sql);
     $games      = $pdo_result->fetchAll();
-    
+
     return $games;
+}
+
+function find_game_by_id($id) {
+    $sql        = "SELECT * FROM games WHERE id = {$id}";
+    $pdo_result = Database::prepare_and_execute($sql);
+
+    if ($pdo_result->rowCount() == 1) {
+        $game       = $pdo_result->fetch();
+    } else {
+        $game = blank_game();
+    }
+
+    return $game;
 }
 
 /* Creates a new game in the games table by building the appropriate
@@ -59,11 +72,11 @@ function sanitized_game() {
         'min_play_minutes' => filter_input(INPUT_POST, 'min_play_minutes', FILTER_SANITIZE_NUMBER_INT),
         'max_play_minutes' => filter_input(INPUT_POST, 'max_play_minutes', FILTER_SANITIZE_NUMBER_INT)
     ];
-        
+
     if (isset($_POST['id'])) {
         $game['id'] = filter_input(INPUT_POST, 'id', FILTER_SANITIZE_NUMBER_INT);
     }
-    
+
     return $game;
 }
 
@@ -88,6 +101,8 @@ function validation_error($game) {
         return "The maximum play time must be greater than 0 minutes.";
     } else if ($game['max_play_minutes'] < $game['min_play_minutes']) {
         return "The maximum play time must be greater than or equal to the minimum play time.";
+    } else if (isset($game['id']) && !is_numeric($game['id'])) {
+        return "Could not update the specified game.";
     } else {
         return false;
     }
@@ -115,16 +130,16 @@ function validation_error($game) {
 function update_game($game) {
     // Being the SQL UPDATE statement
     $sql = "UPDATE games SET ";
-    
+
     // Add all the "column = :placeholder" parts to the SQL statement
     foreach($game as $column => $value) {
         $sql .= "{$column} = :{$column}, ";
     }
-    
+
     // Remove the last ", " added above so that we can add the final WHERE clause.
     $sql = substr($sql, 0, count($sql) - 3);
     $sql .= " WHERE id = :id";
-    
+
     return Database::prepare_and_execute($sql, $game);
 }
 

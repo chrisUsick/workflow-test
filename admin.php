@@ -17,7 +17,7 @@
 <?php else: ?>
     <ul>
         <?php foreach($games as $game): ?>
-            <li><a href="edit_game.php?id=<?= $game['id'] ?>"><?= $game['name'] ?></a></li>
+            <li><a href="new_game.php?id=<?= $game['id'] ?>"><?= $game['name'] ?></a></li>
         <?php endforeach ?>
     </ul>
 <?php endif ?>
