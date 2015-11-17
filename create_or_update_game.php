@@ -31,7 +31,7 @@
     <p class="error"><?=$validation_error ?></p>
 <?php endif ?>
 
-<form action="new_game.php" method="post" role="form">
+<form action="create_or_update_game.php" method="post" role="form">
     <fieldset>
         <?php if ($is_new_game): ?>
             <legend>New Board Game</legend>
@@ -63,6 +63,7 @@
             <input type="submit" value="Create Game">
         <?php else: ?>
             <input type="submit" value="Update Game">
+            <input type="submit" name="delete" value="Delete Game">
         <?php endif ?>
     </fieldset>
 </form>

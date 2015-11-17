@@ -1,6 +1,7 @@
 <?php
 
 /* Finds all rows in the games table.
+
    Returns an array of hashes.
 */
 function find_all_games() {
@@ -11,6 +12,11 @@ function find_all_games() {
     return $games;
 }
 
+/* Find a single game row by id.
+
+   Returns an associative array which contains the row data
+   or a blank game if no row is found.
+*/
 function find_game_by_id($id) {
     $sql        = "SELECT * FROM games WHERE id = {$id}";
     $pdo_result = Database::prepare_and_execute($sql);
@@ -22,6 +28,12 @@ function find_game_by_id($id) {
     }
 
     return $game;
+}
+
+/* Deletes a row in the game table by id. */
+function delete_game_by_id($id) {
+    $sql        = "DELETE * FROM games WHERE id = {$id}";
+    $pdo_result = Database::prepare_and_execute($sql);
 }
 
 /* Creates a new game in the games table by building the appropriate
