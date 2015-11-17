@@ -19,14 +19,13 @@ function find_all_games() {
                 'min_num_players'  => 2,
                 'max_num_players'  => 4,
                 'min_play_minutes' => 60,
-                'max_play_minutes' =>  120,
-                'official_url'     => ''];   
+                'max_play_minutes' =>  120];
    $success = create_game($new_game);
 */
 function create_game($game) {
     $sql  = "INSERT INTO games";
-    $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes, official_url)";
-    $sql .= " VALUES (:name, :description, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes, :official_url)";
+    $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes)";
+    $sql .= " VALUES (:name, :description, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes)";
 
     return Database::prepare_and_execute($sql, $game);
 }
@@ -41,8 +40,7 @@ function blank_game() {
         'min_num_players'  => '',
         'max_num_players'  => '',
         'min_play_minutes' => '',
-        'max_play_minutes' => '',
-        'official_url'     => ''
+        'max_play_minutes' => ''
     ];
 }
 
@@ -59,8 +57,7 @@ function sanitized_game() {
         'min_num_players'  => filter_input(INPUT_POST, 'min_num_players', FILTER_SANITIZE_NUMBER_INT),
         'max_num_players'  => filter_input(INPUT_POST, 'max_num_players', FILTER_SANITIZE_NUMBER_INT),
         'min_play_minutes' => filter_input(INPUT_POST, 'min_play_minutes', FILTER_SANITIZE_NUMBER_INT),
-        'max_play_minutes' => filter_input(INPUT_POST, 'max_play_minutes', FILTER_SANITIZE_NUMBER_INT),
-        'official_url'     => filter_input(INPUT_POST, 'official_url', FILTER_SANITIZE_URL)
+        'max_play_minutes' => filter_input(INPUT_POST, 'max_play_minutes', FILTER_SANITIZE_NUMBER_INT)
     ];
         
     if (isset($_POST['id'])) {
@@ -106,13 +103,12 @@ function validation_error($game) {
 
     $updated_game = ['name' => 'Changed',
                     'max_play_minutes' =>  180,
-                    'official_url' => 'http://example.com',
                     'id' => 2];
     $pdo_result = update_game($new_game);
 
    This would build the following SQL statement:
 
-    UPDATE games SET name = :name, max_play_minutes = :max_play_minutes, official_url = :official_url, id = :id WHERE id = :id
+    UPDATE games SET name = :name, max_play_minutes = :max_play_minutes, id = :id WHERE id = :id
 
    Which would in turn be bound to the $updated_game data.
 */
