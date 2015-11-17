@@ -27,8 +27,23 @@ function create_game($game) {
     $sql  = "INSERT INTO games";
     $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes, official_url)";
     $sql .= " VALUES (:name, :description, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes, :official_url)";
-    echo $sql;
+
     return Database::prepare_and_execute($sql, $game);
+}
+
+/* Creates a blank game hash with the same keys expected by the
+   functions that are defined with a $game parameter.
+*/
+function blank_game() {
+    return [
+        'name'             => '',
+        'description'      => '',
+        'min_num_players'  => '',
+        'max_num_players'  => '',
+        'min_play_minutes' => '',
+        'max_play_minutes' => '',
+        'official_url'     => ''
+    ];
 }
 
 /* Builds a hash of sanitized game form data from the POST super global.
