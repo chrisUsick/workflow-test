@@ -7,6 +7,7 @@
 
         if (!$validation_error) {
             create_game($new_game);
+            redirect_to('admin.php');
         }
     } else {
         $new_game = blank_game();
