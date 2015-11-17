@@ -13,7 +13,7 @@
     
     require('partials\header.php');
 ?>
-<?php if ($validation_error): ?>
+<?php if (isset($validation_error) && $validation_error): ?>
     <p class="error"><?=$validation_error ?></p>
 <?php endif ?>
 
