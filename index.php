@@ -8,9 +8,10 @@
 
 <h1>Bored Game Geek</h1>
 
-<?php foreach($games as $game): ?>
-    <h2><?= $game['name'] ?></h2>
-    <p><?= $game['description'] ?></p>
-<?php endforeach ?>
+<ul>
+    <?php foreach($games as $game): ?>
+        <li><a href="show.php?id=<?= $game['id'] ?>"><?= $game['name'] ?></a></li>
+    <?php endforeach ?>
+</ul>
 
 <?php require('partials\footer.php'); ?>
