@@ -1,6 +1,6 @@
 <?php
     require('includes\includes.php');
-    
+
     $games = find_all_games();
 
     require('partials\header.php');

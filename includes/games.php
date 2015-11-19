@@ -70,7 +70,7 @@ function blank_game() {
 }
 
 /* Builds a hash of sanitized game form data from the POST super global.
- 
+
    If nothing was provided for a particular input the default will be an empty string.
 
    Only adds the 'id' key if an id was POSTed.
@@ -93,7 +93,7 @@ function sanitized_game() {
 }
 
 /* Returns a string describing the validation error if there is one.
- 
+
    If the game is valid the function returns false.
 */
 function validation_error($game) {

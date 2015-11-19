@@ -15,7 +15,7 @@
 
     $is_new_game = !isset($game['id']);
     $is_delete   = isset($_POST['delete']);
-    
+
     if ($_POST && !$validation_error) {
         if ($is_new_game) {
             create_game($game);
@@ -51,12 +51,12 @@
         </div>
         <div class="form-group">
             <label>Number of Players</label>
-            <input name="min_num_players" placeholder="minimum #" value="<?= $game['min_num_players'] ?>"> - 
+            <input name="min_num_players" placeholder="minimum #" value="<?= $game['min_num_players'] ?>"> -
             <input name="max_num_players" placeholder="maximum #" value="<?= $game['max_num_players'] ?>">
         </div>
         <div class="form-group">
             <label>Play Time</label>
-            <input name="min_play_minutes" placeholder="minimum minutes" value="<?= $game['min_play_minutes'] ?>"> - 
+            <input name="min_play_minutes" placeholder="minimum minutes" value="<?= $game['min_play_minutes'] ?>"> -
             <input name="max_play_minutes" placeholder="maximum minutes" value="<?= $game['max_play_minutes'] ?>">
         </div>
         <?php if (isset($game['id'])): ?>

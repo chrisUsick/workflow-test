@@ -21,8 +21,8 @@ class Database {
     const DBPASSWORD = 'gorgonzola7!';
 
     private $connection;
-    
-    // The constructor is private. 
+
+    // The constructor is private.
     private function __construct() {
         try {
             $this->connection = new PDO("mysql:host=".self::HOST.";dbname=".self::DBNAME, self::DBUSER, self::DBPASSWORD);

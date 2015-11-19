@@ -1,8 +1,7 @@
 <?php
     require('includes\includes.php');
-    
+
     $id = safe_get_id();
-    
     $game = find_game_by_id($id);
 
     require('partials\header.php');
