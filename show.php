@@ -13,7 +13,17 @@
 <h2><?= $game['name'] ?></h2>
 <p>
     <strong>Number of Players: </strong>
+    <?= $game['min_num_players'] ?>
+    <?php if ($game['min_num_players'] != $game['max_num_players']): ?>
+        - <?= $game['max_num_players'] ?>
+    <?php endif ?>
 </p>
-<p><?= $game['description'] ?></p>
+<p>
+    <strong>Play Time: </strong>
+    <?= $game['min_play_minutes'] ?>
+    <?php if ($game['min_play_minutes'] != $game['max_play_minutes']): ?>
+        - <?= $game['max_play_minutes'] ?>
+    <?php endif ?>
+</p><p><?= $game['description'] ?></p>
 
 <?php require('partials\footer.php'); ?>
