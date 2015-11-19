@@ -2,8 +2,9 @@
     require('includes\includes.php');
 
     $validation_error = false;
-    $id = safe_get_id();
+    $id = safe_get_id(); // There will only be an id if we are editing.
 
+    // Are we processing an update, setting up for an edit, or creating a new game?
     if ($_POST) {
         $game = sanitized_game();
         $validation_error = validation_error($game);
@@ -16,6 +17,7 @@
     $is_new_game = !isset($game['id']);
     $is_delete   = isset($_POST['delete']);
 
+    // CUD work requires that validations pass.
     if ($_POST && !$validation_error) {
         if ($is_new_game) {
             create_game($game);
