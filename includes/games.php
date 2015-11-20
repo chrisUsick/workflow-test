@@ -78,7 +78,7 @@ function blank_game() {
 function sanitized_game() {
     $game = [
         'name'             => filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
-        'description'      => filter_input(INPUT_POST, 'description', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
+        'description'      => $_POST['description'], // Unfiltered to allow for WYSIWYG Editor Styles
         'min_num_players'  => filter_input(INPUT_POST, 'min_num_players', FILTER_SANITIZE_NUMBER_INT),
         'max_num_players'  => filter_input(INPUT_POST, 'max_num_players', FILTER_SANITIZE_NUMBER_INT),
         'min_play_minutes' => filter_input(INPUT_POST, 'min_play_minutes', FILTER_SANITIZE_NUMBER_INT),

@@ -49,7 +49,7 @@
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" rows="10" name="description" id="description"><?= $game['description'] ?></textarea>
+            <textarea class="form-control summernote" rows="10" name="description" id="description"><?= $game['description'] ?></textarea>
         </div>
         <div class="form-group">
             <div class="row">
