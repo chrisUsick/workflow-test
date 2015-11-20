@@ -45,30 +45,44 @@
         <?php endif ?>
         <div class="form-group">
             <label for="name">Name</label>
-            <input name="name" id="name" value="<?= $game['name'] ?>">
+            <input class="form-control" name="name" id="name" value="<?= $game['name'] ?>">
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <textarea name="description" id="description"><?= $game['description'] ?></textarea>
+            <textarea class="form-control" rows="10" name="description" id="description"><?= $game['description'] ?></textarea>
         </div>
         <div class="form-group">
-            <label>Number of Players</label>
-            <input name="min_num_players" placeholder="minimum #" value="<?= $game['min_num_players'] ?>"> -
-            <input name="max_num_players" placeholder="maximum #" value="<?= $game['max_num_players'] ?>">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Minimum # of Players</label>
+                    <input class="form-control" type="number" min="1" name="min_num_players" placeholder="minimum #" value="<?= $game['min_num_players'] ?>">
+                </div>
+                <div class="col-xs-3">
+                    <label>Maximum # of Players</label>
+                    <input class="form-control" type="number" min="1" name="max_num_players" placeholder="maximum #" value="<?= $game['max_num_players'] ?>">
+                </div>
+            </div>
         </div>
         <div class="form-group">
-            <label>Play Time</label>
-            <input name="min_play_minutes" placeholder="minimum minutes" value="<?= $game['min_play_minutes'] ?>"> -
-            <input name="max_play_minutes" placeholder="maximum minutes" value="<?= $game['max_play_minutes'] ?>">
+            <div class="row">
+                <div class="col-xs-3">
+                    <label>Minimum Playtime in Minutes</label>
+                    <input class="form-control" type="number" min="1" name="min_play_minutes" placeholder="minimum minutes" value="<?= $game['min_play_minutes'] ?>">
+                </div>
+                <div class="col-xs-3">
+                    <label>Maximum Playtime in Minutes</label>
+                    <input class="form-control" type="number" min="1" name="max_play_minutes" placeholder="maximum minutes" value="<?= $game['max_play_minutes'] ?>">
+                </div>
+            </div>
         </div>
         <?php if (isset($game['id'])): ?>
             <input type="hidden" name="id" value="<?= $game['id'] ?>">
         <?php endif ?>
         <?php if ($is_new_game): ?>
-            <input type="submit" value="Create Game">
+            <input class="btn btn-primary" type="submit" value="Create Game">
         <?php else: ?>
-            <input type="submit" value="Update Game">
-            <input type="submit" name="delete" value="Delete Game" onclick="return confirm('Are you sure you want to delete this game?')">
+            <input class="btn btn-primary" type="submit" value="Update Game">
+            <input  class="btn  btn-danger" type="submit" name="delete" value="Delete Game" onclick="return confirm('Are you sure you want to delete this game?')">
         <?php endif ?>
     </fieldset>
 </form>
