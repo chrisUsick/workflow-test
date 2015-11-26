@@ -6,8 +6,7 @@
     require('partials\header.php');
 ?>
 
-<h1>Bored Game Geek</h1>
-
+<h2>Board Games</h2>
 <ul>
     <?php foreach($games as $game): ?>
         <li><a href="show.php?id=<?= $game['id'] ?>"><?= $game['name'] ?></a></li>

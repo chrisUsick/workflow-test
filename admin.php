@@ -6,10 +6,6 @@
     require('partials\header.php');
 ?>
 
-<h1>Bored Game Geek Admin</h1>
-
-<p><a href="create_or_update_game.php">Add New Game</a></p>
-
 <h2>Edit Existing Games</h2>
 
 <?php if (count($games) == 0): ?>
@@ -23,5 +19,9 @@
         <?php endforeach ?>
     </ul>
 <?php endif ?>
+
+<h2>Add New Games</h2>
+
+<p><a href="create_or_update_game.php" class="btn btn-primary">Add Game</a></p>
 
 <?php require('partials\footer.php'); ?>

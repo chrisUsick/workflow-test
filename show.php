@@ -7,8 +7,6 @@
     require('partials\header.php');
 ?>
 
-<h1>Bored Game Geek</h1>
-
 <h2><?= $game['name'] ?></h2>
 <p>
     <strong>Number of Players: </strong>
