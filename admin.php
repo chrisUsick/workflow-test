@@ -20,8 +20,11 @@
     </ul>
 <?php endif ?>
 
-<h2>Add New Games</h2>
+<h2>Add New Games or Categories</h2>
 
-<p><a href="create_or_update_game.php" class="btn btn-primary">Add Game</a></p>
+<p>
+    <a href="create_or_update_game.php" class="btn btn-primary">Add Game</a>
+    <a href="create_or_update_category.php" class="btn btn-primary">Add Category</a>
+</p>
 
 <?php require('partials\footer.php'); ?>
