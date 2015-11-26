@@ -75,7 +75,7 @@ function blank_game() {
 
    Only adds the 'id' key if an id was POSTed.
 */
-function sanitized_game() {
+function sanitized_game_from_post() {
     $game = [
         'name'             => filter_input(INPUT_POST, 'name', FILTER_SANITIZE_FULL_SPECIAL_CHARS),
         'description'      => $_POST['description'], // Unfiltered to allow for WYSIWYG Editor Styles

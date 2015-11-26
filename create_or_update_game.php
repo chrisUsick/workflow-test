@@ -6,7 +6,7 @@
 
     // Are we processing an update, setting up for an edit, or creating a new game?
     if ($_POST) {
-        $game = sanitized_game();
+        $game = sanitized_game_from_post();
         $validation_error = validation_error($game);
     } else if ($id) {
         $game = find_game_by_id($id);
