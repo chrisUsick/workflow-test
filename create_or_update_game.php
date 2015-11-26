@@ -1,27 +1,26 @@
 <?php
     require('includes\includes.php');
 
+    $get_id = safe_get_id(); // There will only be an id if we are editing.
     $validation_error = false;
-    $id = safe_get_id(); // There will only be an id if we are editing.
 
-    // Are we processing an update, setting up for an edit, or creating a new game?
-    if ($_POST) {
+    // Load the game based on...
+    if ($_POST) {                      // ...a POSTed form.
         $game = sanitized_game_from_post();
-        $validation_error = validation_error($game);
-    } else if ($id) {
-        $game = find_game_by_id($id);
-    } else {
+        $validation_error = game_validation_error($game);
+    } else if ($get_id) {              // ...a GET request with an id parameter.
+        $game = find_game_by_id($get_id);
+    } else {                           // ...a GET request with no id parameter.
         $game = blank_game();
     }
 
-    $is_new_game = !isset($game['id']);
-    $is_delete   = isset($_POST['delete']);
-
-    // CUD work requires that validations pass.
+    // Process Create, Update or Delete Requests
     if ($_POST && !$validation_error) {
-        if ($is_new_game) {
+        $delete_requested = isset($_POST['delete']);
+
+        if (is_game_new($game)) {
             create_game($game);
-        } else if ($is_delete) {
+        } else if ($delete_requested) {
             delete_game_by_id($game['id']);
         } else {
             update_game($game);
@@ -38,7 +37,7 @@
 
 <form action="create_or_update_game.php" method="post" role="form">
     <fieldset>
-        <?php if ($is_new_game): ?>
+        <?php if (is_game_new($game)): ?>
             <legend>New Board Game</legend>
         <?php else: ?>
             <legend>Update Board Game</legend>
@@ -75,12 +74,10 @@
                 </div>
             </div>
         </div>
-        <?php if (isset($game['id'])): ?>
-            <input type="hidden" name="id" value="<?= $game['id'] ?>">
-        <?php endif ?>
-        <?php if ($is_new_game): ?>
+        <?php if (is_game_new($game)): ?>
             <input class="btn btn-primary" type="submit" value="Create Game">
         <?php else: ?>
+            <input type="hidden" name="id" value="<?= $game['id'] ?>">
             <input class="btn btn-primary" type="submit" value="Update Game">
             <input  class="btn  btn-danger" type="submit" name="delete" value="Delete Game" onclick="return confirm('Are you sure you want to delete this game?')">
         <?php endif ?>

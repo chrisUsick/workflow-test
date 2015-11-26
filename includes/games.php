@@ -69,6 +69,10 @@ function blank_game() {
     ];
 }
 
+function is_game_new($game) {
+    return !isset($game['id']);
+}
+
 /* Builds a hash of sanitized game form data from the POST super global.
 
    If nothing was provided for a particular input the default will be an empty string.
@@ -96,7 +100,7 @@ function sanitized_game_from_post() {
 
    If the game is valid the function returns false.
 */
-function validation_error($game) {
+function game_validation_error($game) {
     if (strlen($game['name']) == 0) {
         return "A name must be provided.";
     } else if (strlen($game['description']) == 0) {
