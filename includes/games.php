@@ -46,8 +46,8 @@ function delete_game_by_id($id) {
    $success = create_game($new_game); */
 function create_game($game) {
     $sql  = "INSERT INTO games";
-    $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes)";
-    $sql .= " VALUES (:name, :description, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes)";
+    $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes, category_id)";
+    $sql .= " VALUES (:name, :description, :min_num_players, :max_num_players, :min_play_minutes, :max_play_minutes, :category_id)";
 
     return Database::prepare_and_execute($sql, $game);
 }
@@ -61,7 +61,8 @@ function blank_game() {
         'min_num_players'  => '',
         'max_num_players'  => '',
         'min_play_minutes' => '',
-        'max_play_minutes' => ''
+        'max_play_minutes' => '',
+        'category_id'      => ''
     ];
 }
 
@@ -85,7 +86,8 @@ function sanitized_game_from_post() {
         'min_num_players'  => filter_input(INPUT_POST, 'min_num_players', FILTER_SANITIZE_NUMBER_INT),
         'max_num_players'  => filter_input(INPUT_POST, 'max_num_players', FILTER_SANITIZE_NUMBER_INT),
         'min_play_minutes' => filter_input(INPUT_POST, 'min_play_minutes', FILTER_SANITIZE_NUMBER_INT),
-        'max_play_minutes' => filter_input(INPUT_POST, 'max_play_minutes', FILTER_SANITIZE_NUMBER_INT)
+        'max_play_minutes' => filter_input(INPUT_POST, 'max_play_minutes', FILTER_SANITIZE_NUMBER_INT),
+        'category_id'      => filter_input(INPUT_POST, 'category_id', FILTER_SANITIZE_NUMBER_INT)
     ];
 
     if (isset($_POST['id'])) {
@@ -116,6 +118,10 @@ function game_validation_error($game) {
         return "The maximum play time must be greater than 0 minutes.";
     } else if ($game['max_play_minutes'] < $game['min_play_minutes']) {
         return "The maximum play time must be greater than or equal to the minimum play time.";
+    } else if (!isset($game['category_id'])) {
+        return "You must specify a category.";
+    } else if (isset($game['category_id']) && !is_numeric($game['category_id'])) {
+        return "Unrecognized category.";
     } else if (isset($game['id']) && !is_numeric($game['id'])) {
         return "Could not update the specified game.";
     } else {

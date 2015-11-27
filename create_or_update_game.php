@@ -1,6 +1,7 @@
 <?php
     require('includes\includes.php');
 
+    $categories = find_all_categories();
     $get_id = safe_get_id(); // There will only be an id if we are editing.
     $delete_requested = isset($_POST['delete']);
 
@@ -16,7 +17,7 @@
 
     // Validation for create and update, but not for delete.
     if ($_POST && !$delete_requested) {
-        $validation_error = category_validation_error($game);
+        $validation_error = game_validation_error($game);
     } else {
         $validation_error = false;
     }
@@ -54,6 +55,19 @@
         <div class="form-group">
             <label for="description">Description</label>
             <textarea class="form-control summernote" rows="10" name="description" id="description"><?= $game['description'] ?></textarea>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <select class="form-control" id="category" name="category_id">
+                <option value="" disabled <?= !is_numeric($game['category_id']) ? "selected" : "" ?>>
+                    Select a category
+                </option>
+                <?php foreach($categories as $category): ?>
+                    <option value="<?= $category['id'] ?>" <?= ($game['category_id'] == $category['id']) ? "selected" : "" ?>>
+                        <?= $category['name'] ?>
+                    </option>
+                <?php endforeach ?>
+            </select>
         </div>
         <div class="form-group">
             <div class="row">
