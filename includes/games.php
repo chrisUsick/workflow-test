@@ -2,8 +2,7 @@
 
 /* Finds all rows in the games table.
 
-   Returns an array of hashes.
-*/
+   Returns an array of hashes. */
 function find_all_games() {
     $sql        = "SELECT * FROM games";
     $pdo_result = Database::prepare_and_execute($sql);
@@ -15,8 +14,7 @@ function find_all_games() {
 /* Find a single game row by id.
 
    Returns an associative array which contains the row data
-   or a blank game if no row is found.
-*/
+   or a blank game if no row is found. */
 function find_game_by_id($id) {
     $sql        = "SELECT * FROM games WHERE id = :id";
     $pdo_result = Database::prepare_and_execute($sql, ['id' => $id]);
@@ -45,8 +43,7 @@ function delete_game_by_id($id) {
                 'max_num_players'  => 4,
                 'min_play_minutes' => 60,
                 'max_play_minutes' =>  120];
-   $success = create_game($new_game);
-*/
+   $success = create_game($new_game); */
 function create_game($game) {
     $sql  = "INSERT INTO games";
     $sql .= "(name, description, min_num_players, max_num_players, min_play_minutes, max_play_minutes)";
@@ -56,8 +53,7 @@ function create_game($game) {
 }
 
 /* Creates a blank game hash with the same keys expected by the
-   functions that are defined with a $game parameter.
-*/
+   functions that are defined with a $game parameter. */
 function blank_game() {
     return [
         'name'             => '',
@@ -69,6 +65,9 @@ function blank_game() {
     ];
 }
 
+/* Games that are not coming from the database will not have an id
+   key in their hash. These might be games POSTed by the user or
+   blank games produced by the above function. */
 function is_game_new($game) {
     return !isset($game['id']);
 }

@@ -2,7 +2,7 @@
     require('includes\includes.php');
 
     $get_id = safe_get_id(); // There will only be an id if we are editing.
-    $validation_error = false;
+    $delete_requested = isset($_POST['delete']);
 
     // Load the game based on...
     if ($_POST) {                      // ...a POSTed form.
@@ -14,10 +14,15 @@
         $game = blank_game();
     }
 
+    // Validation for create and update, but not for delete.
+    if ($_POST && !$delete_requested) {
+        $validation_error = category_validation_error($game);
+    } else {
+        $validation_error = false;
+    }
+
     // Process Create, Update or Delete Requests
     if ($_POST && !$validation_error) {
-        $delete_requested = isset($_POST['delete']);
-
         if (is_game_new($game)) {
             create_game($game);
         } else if ($delete_requested) {
