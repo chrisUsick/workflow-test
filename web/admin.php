@@ -1,10 +1,10 @@
 <?php
-    require('includes\includes.php');
-    
+    require('includes/includes.php');
+
     $games = find_all_games();
     $categories = find_all_categories();
 
-    require('partials\header.php');
+    require('partials/header.php');
 ?>
 
 <h2>Edit Existing Games</h2>
@@ -43,4 +43,4 @@
     <a href="create_or_update_category.php" class="btn btn-primary">Add Category</a>
 </p>
 
-<?php require('partials\footer.php'); ?>
+<?php require('partials/footer.php'); ?>

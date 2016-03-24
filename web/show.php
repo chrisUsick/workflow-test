@@ -1,10 +1,10 @@
 <?php
-    require('includes\includes.php');
+    require('includes/includes.php');
 
     $id = safe_get_id();
     $game = find_game_by_id($id);
 
-    require('partials\header.php');
+    require('partials/header.php');
 ?>
 
 <h2><?= $game['name'] ?></h2>
@@ -23,4 +23,4 @@
     <?php endif ?>
 </p><p><?= $game['description'] ?></p>
 
-<?php require('partials\footer.php'); ?>
+<?php require('partials/footer.php'); ?>

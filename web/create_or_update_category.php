@@ -1,5 +1,5 @@
 <?php
-    require('includes\includes.php');
+    require('includes/includes.php');
 
     $get_id = safe_get_id(); // There will only be an id if we are editing.
     $delete_requested = isset($_POST['delete']);
@@ -33,7 +33,7 @@
         redirect_to('admin.php');
     }
 
-    require('partials\header.php');
+    require('partials/header.php');
 ?>
 <?php if ($validation_error): ?>
     <p class="error"><?=$validation_error ?></p>
@@ -59,4 +59,4 @@
         <?php endif ?>
     </fieldset>
 </form>
-<?php require('partials\footer.php'); ?>
+<?php require('partials/footer.php'); ?>
