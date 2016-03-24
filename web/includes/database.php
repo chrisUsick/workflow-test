@@ -15,17 +15,38 @@
 */
 
 class Database {
-    const HOST = 'localhost';
-    const DBNAME = 'boardgamegeek';
-    const DBUSER = 'serveruser';
+    const DBVENDOR   = 'mysql';
+    const DBHOST     = 'localhost';
+    const DBNAME     = 'boardgamegeek';
+    const DBUSER     = 'serveruser';
     const DBPASSWORD = 'gorgonzola7!';
+    const DBPORT     = 3306;
 
     private $connection;
 
     // The constructor is private.
     private function __construct() {
+        $dbvendor   = self::DBVENDOR;
+        $dbhost     = self::DBHOST;
+        $dbname     = self::DBNAME;
+        $dbuser     = self::DBUSER;
+        $dbpassword = self::DBPASSWORD;
+        $dbport     = self::DBPORT;
+
+        $heroku_database_url = getenv('DATABASE_URL');
+
+        if ($heroku_database_url) {
+            $dbopts = parse_url($heroku_database_url);
+            $dbvendor = "pgsql";
+            $dbhost = $dbopts["host"];
+            $dbname = ltrim($dbopts["path"],'/');
+            $dbuser = $dbopts["user"];
+            $dbpassword = $dbopts["pass"];
+            $dbport = $dbopts["port"];
+        }
+
         try {
-            $this->connection = new PDO("mysql:host=".self::HOST.";dbname=".self::DBNAME, self::DBUSER, self::DBPASSWORD);
+            $this->connection = new PDO("{$dbvendor}:host={$dbhost};dbname={$dbname};port={$dbport}", $dbuser, $dbpassword);
         } catch(PDOException $e) {
             die("DB Error: " . $e->getMessage()); // A nicer recovery would be good here. Even a redirect to an HTTP 500 error page would do.
         }
