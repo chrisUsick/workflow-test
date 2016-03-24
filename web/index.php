@@ -1,5 +1,5 @@
 <?php
-    require('includes\includes.php');
+    require('includes/includes.php');
 
     $games = find_all_games();
 
