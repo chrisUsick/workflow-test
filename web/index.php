@@ -3,7 +3,7 @@
 
     $games = find_all_games();
 
-    require('partials\header.php');
+    require('partials/header.php');
 ?>
 
 <h2>Board Games</h2>
@@ -13,4 +13,4 @@
     <?php endforeach ?>
 </ul>
 
-<?php require('partials\footer.php'); ?>
+<?php require('partials/footer.php'); ?>
