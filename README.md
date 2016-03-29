@@ -4,7 +4,7 @@ Simplified PHP clone of the [Board Game Geek Website](https://boardgamegeek.com/
 
 This website is a framework-less Content Management System (CMS) implemented in PHP.
 
-My goal was to create a CMS that can be understood by a novice programmer using [php.net](http://php.net) as their only resource.
+My goal was to create a CMS that can be understood by novice programmers using [php.net](http://php.net) as their only resource.
 
 ## Directory Structure
 
