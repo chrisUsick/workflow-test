@@ -27,5 +27,11 @@ create database boardgamegeek;
 Import the script from the terminal:  
 
 ```bash
-mysql -u root -p boardgamegeek < boardgamegeek.sql 
+mysql -u root -p boardgamegeek < boardgamegeek.sql
 ```
+
+## Project info
+
+### Creating a new page
+
+Follow the example for existing pages. If additional functionality is needed create a file in the `includes/` directory and add it to `includes/includes.php`.  
