@@ -15,3 +15,17 @@ My goal was to create a CMS that can be understood by novice programmers using [
 * includes - Helper php files go here.
 * js - All javascript will go here.
 * partials - Template php files go here.
+
+## Build the database
+
+Create database:  
+
+```mysql
+create database boardgamegeek;
+```
+
+Import the script from the terminal:  
+
+```bash
+mysql -u root -p boardgamegeek < boardgamegeek.sql 
+```
