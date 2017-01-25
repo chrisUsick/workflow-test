@@ -15,3 +15,9 @@ My goal was to create a CMS that can be understood by novice programmers using [
 * includes - Helper php files go here.
 * js - All javascript will go here.
 * partials - Template php files go here.
+
+## Project info
+
+### Creating a new page
+
+Follow the example for existing pages. If additional functionality is needed create a file in the `includes/` directory and add it to `includes/includes.php`.  
