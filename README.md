@@ -1,5 +1,5 @@
 # Bored Game Geek
-
+*Note: code copied from [stungeye-RRC](https://github.com/StungEye-RRC/boredgamegeek)*
 Simplified PHP clone of the [Board Game Geek Website](https://boardgamegeek.com/https://boardgamegeek.com/).
 
 This website is a framework-less Content Management System (CMS) implemented in PHP.

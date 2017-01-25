@@ -18,8 +18,8 @@ class Database {
     const DBVENDOR   = 'mysql';
     const DBHOST     = 'localhost';
     const DBNAME     = 'boardgamegeek';
-    const DBUSER     = 'serveruser';
-    const DBPASSWORD = 'gorgonzola7!';
+    const DBUSER     = 'root';
+    const DBPASSWORD = 'root';
     const DBPORT     = 3306;
 
     private $connection;
