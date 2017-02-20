@@ -35,3 +35,10 @@ mysql -u root -p boardgamegeek < boardgamegeek.sql
 ### Creating a new page
 
 Follow the example for existing pages. If additional functionality is needed create a file in the `includes/` directory and add it to `includes/includes.php`.  
+
+### Contributing
+
+ 1. Fork
+ 2. Create feature branch, code
+ 3. run `rake bump:revision`
+ 4. create a pull request
