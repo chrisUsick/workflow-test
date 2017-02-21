@@ -38,7 +38,7 @@ Follow the example for existing pages. If additional functionality is needed cre
 
 ### Contributing
 
- 1. Fork
- 2. Create feature branch, code
- 3. run `rake bump:revision`
- 4. Make a pull request
+  1. Fork
+  2. Create feature branch, code
+  3. run `rake bump:revision`
+  4. Make a pull request
