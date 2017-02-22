@@ -43,3 +43,4 @@ Follow the example for existing pages. If additional functionality is needed cre
  3. run `rake bump:revision`
  4. Make a pull request
 
+Thanks!
