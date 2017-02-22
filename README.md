@@ -41,6 +41,6 @@ Follow the example for existing pages. If additional functionality is needed cre
  1. Fork
  2. Create feature branch, code
  3. run `rake bump:revision`
- 4. Build a pull request
+ 4. Create a pull request
 
 Thank you, very much!
